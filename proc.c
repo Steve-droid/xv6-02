@@ -845,4 +845,31 @@ int cps104(){
   struct proc* p;
   int ppid, pid, extpid;
   struct pid_ns *root_ns;
+
+  sti(); // Enable interrupts
+  root_ns = initproc->nsproxy->pid_ns; // Get root namespace
+  acquire(&ptable.lock);
+  cprintf("name \t pid \t state \t \t extpid \t ppid \t size \t cputime \n");
+
+  for (p = ptable.proc; p < &ptable.proc[NPROC]; p++) {
+    
+    if (p->state == UNUSED)
+      continue;
+    
+    pid = proc_pid(p);
+    extpid = get_pid_for_ns(p, root_ns);
+    ppid = (p->ns_pid == 1) ? 0 : (p->parent ? p->parent->ns_pid : 0);
+
+    if (p->state == RUNNING)
+      cprintf("%s \t %d \t RUNNING \t %d \t %d \t %d \t %d \n",
+              p->name, pid, extpid, ppid, p->sz, p->cpu_time);
+    else
+      cprintf("%s \t %d \t SLEEPING \t %d \t %d \t %d \t %d \n",
+              p->name, pid, extpid, ppid, p->sz, p->cpu_time);
+  }
+
+  release(&ptable.lock);
+  return 104;
+
+
 }
