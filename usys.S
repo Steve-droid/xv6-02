@@ -40,3 +40,5 @@ SYSCALL(getppid)
 SYSCALL(getcpu)
 SYSCALL(getmem)
 SYSCALL(kmemtest)
+SYSCALL(cps104)
+

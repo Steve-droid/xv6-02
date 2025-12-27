@@ -839,3 +839,10 @@ struct cgroup *proc_get_cgroup(void)
      cg = proc->cgroup;
   return cg;
 }
+
+
+int cps104(){
+  struct proc* p;
+  int ppid, pid, extpid;
+  struct pid_ns *root_ns;
+}
