@@ -1,3 +1,10 @@
+/*
+ * Student Name: Steve Levit
+ * Student ID: 211420104
+ * File: proc.c
+ * File Description: Process management - Added cps104() system call for container-aware process listing
+ */
+
 #include "types.h"
 #include "defs.h"
 #include "param.h"
@@ -861,10 +868,10 @@ int cps104(){
     ppid = (p->ns_pid == 1) ? 0 : (p->parent ? p->parent->ns_pid : 0);
 
     if (p->state == RUNNING)
-      cprintf("%s \t %d \t RUNNING \t %d \t %d \t %d \t %d \n",
+      cprintf("%s \t %d \t RUNNING \t %d \t\t %d \t %d \t %d \n",
               p->name, pid, extpid, ppid, p->sz, p->cpu_time);
     else
-      cprintf("%s \t %d \t SLEEPING \t %d \t %d \t %d \t %d \n",
+      cprintf("%s \t %d \t SLEEPING \t %d \t\t %d \t %d \t %d \n",
               p->name, pid, extpid, ppid, p->sz, p->cpu_time);
   }
 

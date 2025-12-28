@@ -1,3 +1,11 @@
+/*
+ * Student Name: Steve Levit
+ * Student ID: 211420104
+ * File: sysproc.c
+ * File Description: Process-related system call wrapper functions
+ * Changes: Added sys_cps104() wrapper that calls cps104() in proc.c
+ */
+
 #include "types.h"
 #include "x86.h"
 #include "defs.h"

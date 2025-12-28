@@ -1,0 +1,20 @@
+ps
+name 	 pid 	 state 	 	 extpid 	 ppid 	 size 	 cputime 
+init 	 1 	 SLEEPING 	 1 		 0 	 16384 	 15830 
+sh 	 2 	 SLEEPING 	 2 		 1 	 57344 	 8504 
+ps 	 3 	 RUNNING 	 3 		 2 	 16384 	 3344 
+$ ps
+name 	 pid 	 state 	 	 extpid 	 ppid 	 size 	 cputime 
+init 	 1 	 SLEEPING 	 1 		 0 	 16384 	 15830 
+sh 	 2 	 SLEEPING 	 2 		 1 	 57344 	 11667 
+ps 	 4 	 RUNNING 	 4 		 2 	 16384 	 0 
+
+pouch start c1
+$ $ Pouch: Failed to create root cgroup.
+Pouch: cgroup operation failed.
+$ ps
+name 	 pid 	 state 	 	 extpid 	 ppid 	 size 	 cputime 
+init 	 1 	 SLEEPING 	 1 		 0 	 16384 	 15830 
+sh 	 2 	 SLEEPING 	 2 		 1 	 57344 	 22355 
+ps 	 7 	 RUNNING 	 7 		 2 	 16384 	 0 
+$ 

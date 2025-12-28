@@ -2,7 +2,7 @@
  * Student Name: Steve Levit
  * Student ID: 211420104
  * File: ps.c
- * Description: User program that displays running processes with namespace support
+ * File Description: User program that displays running processes with namespace support
  */
 
 #include "types.h"

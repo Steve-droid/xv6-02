@@ -1,3 +1,9 @@
+# Student Name: Steve Levit
+# Student ID: 211420104
+# File: Makefile
+# File Description: Build config
+# Changes: Added _ps to UPROGS list 
+
 MAKEFILE_DIRECTORY := $(shell dirname $(realpath $(lastword $(MAKEFILE_LIST))))
 
 MMNFILES = proc.o syscall.o sysproc.o usys.o

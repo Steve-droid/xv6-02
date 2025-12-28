@@ -1,0 +1,71 @@
+ps
+name 	 pid 	 state 	 	 extpid 	 ppid 	 size 	 cputime 
+init 	 1 	 SLEEPING 	 1 		 0 	 16384 	 31036 
+sh 	 2 	 SLEEPING 	 2 		 1 	 57344 	 8636 
+ps 	 3 	 RUNNING 	 3 		 2 	 16384 	 2908 
+$ ps
+name 	 pid 	 state 	 	 extpid 	 ppid 	 size 	 cputime 
+init 	 1 	 SLEEPING 	 1 		 0 	 16384 	 31036 
+sh 	 2 	 SLEEPING 	 2 		 1 	 57344 	 11929 
+ps 	 4 	 RUNNING 	 4 		 2 	 16384 	 0 
+$ 
+pouch start c1
+$ Pouch: c1 starting
+$ ps
+name 	 pid 	 state 	 	 extpid 	 ppid 	 size 	 cputime 
+init 	 1 	 SLEEPING 	 1 		 0 	 16384 	 31036 
+sh 	 2 	 SLEEPING 	 2 		 1 	 57344 	 22509 
+ps 	 9 	 RUNNING 	 9 		 2 	 16384 	 2726 
+pouch 	 7 	 SLEEPING 	 7 		 1 	 28672 	 8390 
+sh 	 8 	 SLEEPING 	 8 		 0 	 24576 	 7530 
+$ 
+pouch connect c1
+$ 
+tty0 connected
+ps
+name 	 pid 	 state 	 	 extpid 	 ppid 	 size 	 cputime 
+init 	 0 	 SLEEPING 	 1 		 0 	 16384 	 31036 
+sh 	 0 	 SLEEPING 	 2 		 1 	 57344 	 30251 
+ps 	 2 	 RUNNING 	 12 		 1 	 16384 	 2863 
+pouch 	 0 	 SLEEPING 	 7 		 1 	 28672 	 8390 
+sh 	 1 	 SLEEPING 	 8 		 0 	 57344 	 10870 
+$ ps
+name 	 pid 	 state 	 	 extpid 	 ppid 	 size 	 cputime 
+init 	 0 	 SLEEPING 	 1 		 0 	 16384 	 31036 
+sh 	 0 	 SLEEPING 	 2 		 1 	 57344 	 30251 
+ps 	 3 	 RUNNING 	 13 		 1 	 16384 	 3679 
+pouch 	 0 	 SLEEPING 	 7 		 1 	 28672 	 8390 
+sh 	 1 	 SLEEPING 	 8 		 0 	 57344 	 13965 
+$ ps
+name 	 pid 	 state 	 	 extpid 	 ppid 	 size 	 cputime 
+init 	 0 	 SLEEPING 	 1 		 0 	 16384 	 31036 
+sh 	 0 	 SLEEPING 	 2 		 1 	 57344 	 30251 
+ps 	 4 	 RUNNING 	 14 		 1 	 16384 	 0 
+pouch 	 0 	 SLEEPING 	 7 		 1 	 28672 	 8390 
+sh 	 1 	 SLEEPING 	 8 		 0 	 57344 	 16899 
+$ 
+pouch disconnect
+$ Console connected
+ps
+name 	 pid 	 state 	 	 extpid 	 ppid 	 size 	 cputime 
+init 	 1 	 SLEEPING 	 1 		 0 	 16384 	 31036 
+sh 	 2 	 SLEEPING 	 2 		 1 	 57344 	 32760 
+ps 	 17 	 RUNNING 	 17 		 2 	 16384 	 0 
+pouch 	 7 	 SLEEPING 	 7 		 1 	 28672 	 8390 
+sh 	 8 	 SLEEPING 	 8 		 0 	 57344 	 24701 
+$ ps
+name 	 pid 	 state 	 	 extpid 	 ppid 	 size 	 cputime 
+init 	 1 	 SLEEPING 	 1 		 0 	 16384 	 31036 
+sh 	 2 	 SLEEPING 	 2 		 1 	 57344 	 35693 
+ps 	 18 	 RUNNING 	 18 		 2 	 16384 	 0 
+pouch 	 7 	 SLEEPING 	 7 		 1 	 28672 	 8390 
+sh 	 8 	 SLEEPING 	 8 		 0 	 57344 	 24701 
+$ 
+pouch destroy c1
+$ Pouch: c1 destroyed
+zombie!
+$ ps
+name 	 pid 	 state 	 	 extpid 	 ppid 	 size 	 cputime 
+init 	 1 	 SLEEPING 	 1 		 0 	 16384 	 33130 
+sh 	 2 	 SLEEPING 	 2 		 1 	 57344 	 47178 
+ps 	 21 	 RUNNING 	 21 		 2 	 

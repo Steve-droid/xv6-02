@@ -1,3 +1,15 @@
+/*
+ * Student Name: Steve Levit
+ * Student ID: 211420104
+ * File: syscall.c
+ * Description: This file is the syscall dispatcher- it reads the value in
+ *              the %eax register, looks for an entry in the array of pointers
+ *              to functions `syscalls` and calls the handler function.
+ *
+ * Changes:     I added the pointer to the function `sys_cps104` in index
+ *              `SYS_cps104` in the function pointer array
+ */
+
 #include "types.h"
 #include "defs.h"
 #include "param.h"
