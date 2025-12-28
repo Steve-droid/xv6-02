@@ -863,9 +863,23 @@ int cps104(){
     if (p->state == UNUSED)
       continue;
     
-    pid = proc_pid(p);
+    pid = p->ns_pid;
     extpid = get_pid_for_ns(p, root_ns);
-    ppid = (p->ns_pid == 1) ? 0 : (p->parent ? p->parent->ns_pid : 0);
+    
+    if (p->ns_pid == 1) {
+      ppid = 0; // init always has ppid of 0
+    }
+
+    else if (p->parent){
+      ppid = proc_pid(p->parent); // Try to get parent PID in current namespace
+      if (ppid == 0){
+        ppid = p->parent->ns_pid; 
+      }
+    } else {
+      ppid = 0;
+    }
+
+
 
     if (p->state == RUNNING)
       cprintf("%s \t %d \t RUNNING \t %d \t\t %d \t %d \t %d \n",
